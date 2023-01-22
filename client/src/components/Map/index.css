@@ -1,0 +1,17 @@
+.map-container {
+  position: relative;
+  z-index: 1;
+}
+
+.marker {
+  width: 30px;
+  height: 30px;
+  background-color: rgb(252, 3, 3);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.marker h1 {
+  font-size: 10px;
+  color: white;
+}

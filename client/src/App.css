@@ -1,0 +1,33 @@
+.home-side .card {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: rgb(219, 84, 97);
+  align-items: center;
+}
+
+body {
+  background-color: rgb(219, 84, 97);
+}
+
+.home-side .text {
+  color: white;
+  font-size: 35px;
+}
+
+.RouteModal .ant-modal-footer {
+  display: none;
+}
+
+.map-container {
+  height: 500px;
+  width: 500px;
+}
+
+.marker {
+  background-size: cover;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+}
