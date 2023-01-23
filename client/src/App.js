@@ -28,20 +28,6 @@ function App() {
               />
             }
           />
-          <Route
-            path="/routes/routeDetail/:id"
-            exact
-            element={
-              <BusRouteDetail
-                routeDetail={routeDetail}
-                setRouteDetail={setRouteDetail}
-                setIsModalOpen={setIsModalOpen}
-                isModalOpen={isModalOpen}
-                editRouteForm={editRouteForm}
-                setEditRouteForm={setEditRouteForm}
-              />
-            }
-          />
         </Routes>
       </Router>
     </>

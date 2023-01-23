@@ -18,21 +18,30 @@ const GeoMap = ({ routeStops }) => {
         latitude: 12.9716,
         zoom: 12,
       }}
-      style={{ width: "100%", height: "50vh" }}
-      mapStyle="mapbox://styles/mapbox/outdoors-v12"
+      style={{
+        width: "95%",
+        height: "80vh",
+        margin: "90px 15px",
+        borderRadius: "20px",
+      }}
+      mapStyle="mapbox://styles/mapbox/light-v11"
     >
-      {routeStops.map((stop) => (
-        <Marker
-          key={routeStops._id}
-          longitude={stop.stopLongitude}
-          latitude={stop.stopLatitude}
-          anchor="bottom"
-        >
-          <div className="marker">
-            <h1>{stop.stopName}</h1>
-          </div>
-        </Marker>
-      ))}
+      {routeStops && (
+        <>
+          {routeStops.map((stop) => (
+            <Marker
+              key={routeStops._id}
+              longitude={stop.stopLongitude}
+              latitude={stop.stopLatitude}
+              anchor="bottom"
+            >
+              <div className="marker">
+                <h1>{stop.stopName}</h1>
+              </div>
+            </Marker>
+          ))}
+        </>
+      )}
     </Map>
   );
 };

@@ -1,11 +1,24 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import { Card } from "antd";
+import {
+  EditOutlined,
+  DeleteOutlined,
+  SettingOutlined,
+} from "@ant-design/icons";
+import { Card, Collapse, Typography } from "antd";
+const { Panel } = Collapse;
 const { Meta } = Card;
 
 const BusRoutes = ({ route, getRoutes, setRouteDetail, routeDetail }) => {
+  const [expandIconPosition, setExpandIconPosition] = useState("start");
+  const onPositionChange = (newExpandIconPosition) => {
+    setExpandIconPosition(newExpandIconPosition);
+  };
+  const onChange = (key) => {
+    console.log(key);
+  };
+
   const deleteRoutes = async (id) => {
     await axios
       .delete(`http://localhost:5001/routes/${id}`)
@@ -20,9 +33,18 @@ const BusRoutes = ({ route, getRoutes, setRouteDetail, routeDetail }) => {
       });
   };
 
+  const genExtra = () => (
+    <SettingOutlined
+      onClick={(event) => {
+        // If you don't want click extra trigger collapse, you can prevent this:
+        event.stopPropagation();
+      }}
+    />
+  );
+
   return (
     <div>
-      <Card
+      {/* <Card
         style={{
           width: 300,
           cursor: "pointer",
@@ -54,7 +76,32 @@ const BusRoutes = ({ route, getRoutes, setRouteDetail, routeDetail }) => {
           title={route.routeName}
           description={`This route is ${route.routeStatus} and goes ${route.routeDirection}`}
         />
-      </Card>
+      </Card> */}
+      <Collapse
+        defaultActiveKey={["1"]}
+        onChange={onChange}
+        expandIconPosition={expandIconPosition}
+      >
+        <Panel
+          header={
+            <>
+              <Typography>{route.routeName}</Typography>
+              <Typography>
+                {" "}
+                This route is recently created and will take you to hell for
+                sure. So have fun on the way.
+              </Typography>
+            </>
+          }
+          key={route._id}
+          extra={genExtra()}
+        >
+          <div>
+            This route is recently created and will take you to hell for sure.
+            So have fun on the way.
+          </div>
+        </Panel>
+      </Collapse>
     </div>
   );
 };

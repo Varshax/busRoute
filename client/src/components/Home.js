@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Button, Col, Row, Card, Typography } from "antd";
+import { Button, Col, Row, Card, Typography, Collapse } from "antd";
 import BusRouteModal from "./BusRouteModal";
 import axios from "axios";
 import BusRoutes from "./BusRoutes";
+import GeoMap from "../components/Map/index";
 
 function Home({
   setRouteDetail,
@@ -33,7 +34,28 @@ function Home({
   return (
     <>
       <Row>
-        <Col span={24}>
+        <Col span={12}>
+          <Row>//Icon //name //Button</Row>
+          <Row>
+            <div className="">
+              <Row gutter={16}>
+                {routes &&
+                  routes.map((route) => {
+                    return (
+                      <Col>
+                        <BusRoutes
+                          key={route._id}
+                          route={route}
+                          getRoutes={getRoutes}
+                          setRouteDetail={setRouteDetail}
+                          routeDetail={routeDetail}
+                        />
+                      </Col>
+                    );
+                  })}
+              </Row>
+            </div>
+          </Row>
           <div className="site-card-border-less-wrapper home-side">
             <Card
               title={
@@ -57,24 +79,9 @@ function Home({
               </Button>
             </Col>
           </Row>
-          <div className="">
-            <Row gutter={16}>
-              {routes &&
-                routes.map((route) => {
-                  return (
-                    <Col>
-                      <BusRoutes
-                        key={route._id}
-                        route={route}
-                        getRoutes={getRoutes}
-                        setRouteDetail={setRouteDetail}
-                        routeDetail={routeDetail}
-                      />
-                    </Col>
-                  );
-                })}
-            </Row>
-          </div>
+        </Col>
+        <Col span={12}>
+          <GeoMap routeStops={routeDetail.routeStops} />
         </Col>
       </Row>
       <BusRouteModal
