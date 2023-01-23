@@ -91,6 +91,14 @@ body {
   border-radius: 5px;
 }
 
+.routeDetails .inactive {
+  padding: 5px 10px;
+  background-color: black;
+  color: #ddd;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
 .routeDetails {
   margin-bottom: 10px;
 }
