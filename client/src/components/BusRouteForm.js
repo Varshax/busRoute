@@ -4,7 +4,7 @@ import {
   Button,
   Form,
   Input,
-  InputNumber,
+  Alert,
   Modal,
   Select,
   Switch,
@@ -53,13 +53,14 @@ const ModalForm = ({ open, onCancel }) => {
         <Form.Item
           name="stopLatitude"
           label="Stop Latitude"
+          tooltip="Please Provide value between -90 and  90"
           rules={[
             {
               required: true,
             },
           ]}
         >
-          <Input />
+          <Input placeholder="Please Provide value between -90 and  90" />
         </Form.Item>
         <Form.Item
           name="stopLongitude"
@@ -70,7 +71,7 @@ const ModalForm = ({ open, onCancel }) => {
             },
           ]}
         >
-          <Input />
+          <Input placeholder="Please Provide value between -90 and  90" />
         </Form.Item>
       </Form>
     </Modal>
@@ -82,18 +83,21 @@ const BusRouteForm = ({
   setEditRouteForm,
   setRouteDetail,
   routeDetail,
+  getRoutes,
 }) => {
   const [open, setOpen] = useState(false);
   const [stopList, setStopList] = useState([]);
   const formRef = React.useRef(null);
+
+  console.log(editRouteForm, "Edit Form", routeDetail, "Route Details");
   useEffect(() => {
     if (editRouteForm) {
       formRef.current?.setFieldsValue({
-        routeName: routeDetail.routeName,
-        direction: routeDetail.routeDirection,
-        status: routeDetail.routeStatus,
+        routeName: routeDetail[0].routeName,
+        direction: routeDetail[0].routeDirection,
+        status: routeDetail[0].routeStatus,
       });
-      setStopList(routeDetail.routeStops);
+      setStopList(routeDetail[0].routeStops);
     }
   }, [routeDetail]);
 
@@ -107,37 +111,74 @@ const BusRouteForm = ({
         routeStatus: values.status,
         routeStops: stopList,
       },
-    }).then((resp) => {
-      if (resp.status === 200) {
-        setIsModalOpen(false);
-        setEditRouteForm(false);
-        console.log("Successfully Created");
-      }
-    });
+    })
+      .then((resp) => {
+        if (resp.status === 200) {
+          setIsModalOpen(false);
+          setEditRouteForm(false);
+          getRoutes();
+          <Alert
+            message="Successfully Created Route"
+            type="success"
+            showIcon
+            closable
+          />;
+        }
+      })
+      .catch((error) => {
+        return (
+          <Alert
+            message="Warning"
+            description={error.message}
+            type="warning"
+            showIcon
+            closable
+          />
+        );
+      });
   };
 
   const updateRoute = async (values) => {
+    console.log(values);
     await axios({
       method: "put",
-      url: "http://localhost:5001/routes/routeDetail/" + routeDetail._id,
+      url: "http://localhost:5001/routes/" + routeDetail[0]._id,
       data: {
         routeName: values.routeName,
         routeDirection: values.direction,
         routeStatus: values.status,
         routeStops: stopList,
       },
-    }).then((resp) => {
-      if (resp.status === 200) {
-        setIsModalOpen(false);
-        setEditRouteForm(false);
-        console.log("Successfully Updates");
-      }
-    });
+    })
+      .then((resp) => {
+        if (resp.status === 200) {
+          setIsModalOpen(false);
+          setEditRouteForm(false);
+          getRoutes();
+          <Alert
+            message="Successfully Updated Route"
+            type="success"
+            showIcon
+            closable
+          />;
+        }
+      })
+      .catch((error) => {
+        return (
+          <Alert
+            message="Warning"
+            description={error.message}
+            type="warning"
+            showIcon
+            closable
+          />
+        );
+      });
   };
   const showStopModal = () => {
     setOpen(true);
   };
-  const hideUserModal = () => {
+  const hideStopModal = () => {
     setOpen(false);
   };
   const onFinish = async (values) => {
@@ -153,7 +194,6 @@ const BusRouteForm = ({
   return (
     <Form.Provider
       onFormFinish={(name, { values, forms }) => {
-        console.log(name, values, "lol");
         if (name === "stopForm") {
           const { routeForm } = forms;
           const stops = routeForm.getFieldValue("stops") || [];
@@ -174,10 +214,26 @@ const BusRouteForm = ({
           maxWidth: 800,
         }}
       >
-        <Form.Item name="routeName" label="Route Name">
+        <Form.Item
+          name="routeName"
+          label="Route Name"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
           <Input />
         </Form.Item>
-        <Form.Item name="direction" label="Direction">
+        <Form.Item
+          name="direction"
+          label="Direction"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
           <Select>
             <Select.Option value="up">Up</Select.Option>
             <Select.Option value="down">Down</Select.Option>
@@ -188,7 +244,7 @@ const BusRouteForm = ({
         </Form.Item>
         <div>
           <span>Stops: </span>
-          {stopList.length ? (
+          {stopList ? (
             <ul>
               {stopList.map((stop) => (
                 <li key={stop.stopId} className="stop">
@@ -215,7 +271,7 @@ const BusRouteForm = ({
           </Button>
         </Form.Item>
       </Form>
-      <ModalForm open={open} onCancel={hideUserModal} />
+      <ModalForm open={open} onCancel={hideStopModal} />
     </Form.Provider>
   );
 };

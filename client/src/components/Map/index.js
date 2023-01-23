@@ -35,9 +35,9 @@ const GeoMap = ({ routeStops }) => {
               latitude={stop.stopLatitude}
               anchor="bottom"
             >
-              <div className="marker">
-                <h1>{stop.stopName}</h1>
-              </div>
+              <h2>{stop.stopName}</h2>
+
+              <div className="marker"></div>
             </Marker>
           ))}
         </>
