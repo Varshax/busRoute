@@ -104,7 +104,7 @@ const BusRouteForm = ({
   const createRoute = async (values) => {
     await axios({
       method: "post",
-      url: "https://bus-route.vercel.app/api/v1/",
+      url: "https://bus-route-varshax.vercel.app/api/v1",
       data: {
         routeName: values.routeName,
         routeDirection: values.direction,
@@ -142,7 +142,7 @@ const BusRouteForm = ({
     console.log(values);
     await axios({
       method: "put",
-      url: "https://bus-route.vercel.app/api/v1/" + routeDetail[0]._id,
+      url: "https://bus-route-varshax.vercel.app/api/v1" + routeDetail[0]._id,
       data: {
         routeName: values.routeName,
         routeDirection: values.direction,
