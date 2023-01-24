@@ -9,6 +9,7 @@ const BusRouteModal = ({
   routeDetail,
   editRouteForm,
   setEditRouteForm,
+  getRoutes,
 }) => {
   const handleOk = () => {
     setIsModalOpen(false);
@@ -38,6 +39,7 @@ const BusRouteModal = ({
           routeDetail={routeDetail}
           editRouteForm={editRouteForm}
           setEditRouteForm={setEditRouteForm}
+          getRoutes={getRoutes}
         />
       </Modal>
     </>

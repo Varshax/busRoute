@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Button, Col, Row, Card, Typography } from "antd";
+import { Button, Col, Row, Card, Typography, Collapse } from "antd";
 import BusRouteModal from "./BusRouteModal";
 import axios from "axios";
 import BusRoutes from "./BusRoutes";
+import GeoMap from "../components/Map/index";
+import Icon from "../Icon.png";
+import { PlusOutlined } from "@ant-design/icons";
+import PolyLine from "./PolyLine";
 
 function Home({
   setRouteDetail,
@@ -33,48 +37,50 @@ function Home({
   return (
     <>
       <Row>
-        <Col span={24}>
-          <div className="site-card-border-less-wrapper home-side">
-            <Card
-              title={
-                <>
-                  <Typography className="text">Find Routes Easily</Typography>
-                </>
-              }
-              bordered={false}
-              className="card"
-            ></Card>
-          </div>
-          <Row>
+        <Col span={12}>
+          <Row className="mainIcon">
+            <img src={Icon} alt="icon" />
+          </Row>
+          <Row className="mainHeading">
+            <Col span={12}>
+              <Typography>Find Routes Easily</Typography>
+            </Col>
             <Col>
               <Button
-                style={{ margin: "10px 5px" }}
                 onClick={() => {
                   setIsModalOpen(true);
                 }}
               >
-                Create New Route
+                <span>Create New Route</span>
+                {/* <span>
+                  <PlusOutlined />
+                </span> */}
               </Button>
             </Col>
           </Row>
-          <div className="">
-            <Row gutter={16}>
-              {routes &&
-                routes.map((route) => {
-                  return (
-                    <Col>
-                      <BusRoutes
-                        key={route._id}
-                        route={route}
-                        getRoutes={getRoutes}
-                        setRouteDetail={setRouteDetail}
-                        routeDetail={routeDetail}
-                      />
-                    </Col>
-                  );
-                })}
+          <div className="busRouteList">
+            <Row>
+              <Col span={24}>
+                <BusRoutes
+                  routes={routes}
+                  getRoutes={getRoutes}
+                  setRouteDetail={setRouteDetail}
+                  routeDetail={routeDetail}
+                  setIsModalOpen={setIsModalOpen}
+                  setEditRouteForm={setEditRouteForm}
+                />
+              </Col>
             </Row>
           </div>
+        </Col>
+        <Col span={12}>
+          {routeDetail[0] ? (
+            <PolyLine routeStops={routeDetail[0].routeStops} />
+          ) : (
+            <>
+              <PolyLine />
+            </>
+          )}
         </Col>
       </Row>
       <BusRouteModal
@@ -84,6 +90,7 @@ function Home({
         routeDetail={routeDetail}
         editRouteForm={editRouteForm}
         setEditRouteForm={setEditRouteForm}
+        getRoutes={getRoutes}
       />
     </>
   );

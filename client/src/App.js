@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import "./App.css";
-import BusRouteDetail from "./components/BusRouteDetail";
 import Home from "./components/Home";
 
 function App() {
@@ -21,20 +20,6 @@ function App() {
               <Home
                 setRouteDetail={setRouteDetail}
                 routeDetail={routeDetail}
-                setIsModalOpen={setIsModalOpen}
-                isModalOpen={isModalOpen}
-                editRouteForm={editRouteForm}
-                setEditRouteForm={setEditRouteForm}
-              />
-            }
-          />
-          <Route
-            path="/routes/routeDetail/:id"
-            exact
-            element={
-              <BusRouteDetail
-                routeDetail={routeDetail}
-                setRouteDetail={setRouteDetail}
                 setIsModalOpen={setIsModalOpen}
                 isModalOpen={isModalOpen}
                 editRouteForm={editRouteForm}

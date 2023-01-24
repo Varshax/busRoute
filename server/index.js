@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 
 const busRoutes = require("./routes/busRoute-routes");
 
-app.use("/routes", busRoutes);
+app.use("/api//routes", busRoutes);
 
 ATLAS_URI =
   "mongodb+srv://varshiniak:varshiniak@cluster0.kwevzvl.mongodb.net/?retryWrites=true&w=majority";

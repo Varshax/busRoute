@@ -7,7 +7,6 @@
 }
 
 body {
-  background-color: rgb(219, 84, 97);
 }
 
 .home-side .text {
@@ -19,15 +18,116 @@ body {
   display: none;
 }
 
-.map-container {
-  height: 500px;
-  width: 500px;
-}
-
 .marker {
   background-size: cover;
   width: 24px;
   height: 24px;
   border-radius: 50%;
   cursor: pointer;
+}
+
+.mainHeading {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 35px;
+  margin-top: 40px;
+}
+.mainHeading article {
+  color: #000000;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 40px;
+  opacity: 0.5;
+  margin-left: 30px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.mainHeading button {
+  background: #0093e5;
+  color: #fff;
+  border-radius: 8px;
+  padding: 0px 15px;
+  margin: 10px 0px;
+  font-weight: bold;
+}
+
+.mainHeading button:hover {
+  color: #0093e5;
+  background: #fff;
+}
+
+.mainIcon {
+  margin-top: 30px;
+  margin-left: 30px;
+  margin-bottom: 30px;
+}
+
+.busRouteList {
+  margin-left: 30px;
+}
+
+.busRouteList [role="tablist"] {
+  background-color: white;
+}
+
+.ant-collapse-content-box {
+  background: #f0f0f1;
+}
+
+.routeDetails .active,
+.stops {
+  padding: 5px 10px;
+  background-color: black;
+  color: #dbff00;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
+.routeDetails .inactive {
+  padding: 5px 10px;
+  background-color: black;
+  color: #ddd;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
+.routeDetails {
+  margin-bottom: 10px;
+}
+.stopList {
+  margin-left: 23px;
+}
+.name,
+.lat {
+  margin-right: 20px;
+}
+
+/*Form */
+
+.ant-modal-title {
+  font-size: 22px;
+  margin-bottom: 31px;
+}
+
+button.ant-btn.ant-btn-primary.css-dev-only-do-not-override-1n7nwfa {
+  background: #0093e5;
+  color: #fff;
+  margin-right: 10px;
+}
+
+button.ant-btn.ant-btn-primary.css-dev-only-do-not-override-1n7nwfa:hover {
+  background: #fff;
+  color: #0093e5;
+  margin-right: 10px;
+  border: 1px solid #0093e5;
+}
+
+.map-container {
+  height: 80vh;
+  margin: 90px 15px;
+  width: 95%;
+  border-radius: 20px;
 }
