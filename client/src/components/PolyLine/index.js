@@ -6,15 +6,15 @@ import mapboxgl from "mapbox-gl";
 mapboxgl.accessToken =
   "pk.eyJ1IjoidmFyc2hpbmlhazI1IiwiYSI6ImNsZDZoMzF3YjA0dXozcHBiaXFqOTdhOXgifQ.kFDv0nM6o01tsZXGqGggvA";
 
-function PolyLine({ routeStops }) {
+function PolyLine({ routeStops, id }) {
+  console.log(routeStops, id, "id - routestops");
+
   const mapContainer = useRef(null);
   const map = useRef(null);
-
-  const [coordinatesList, setCordinatesList] = useState([
-    // [77.641151, 12.971891],
-    // [77.6561, 12.9613],
-    // [78.4867, 17.385],
-  ]);
+  const [lng, setLng] = useState(77.641151);
+  const [lat, setLat] = useState(12.971891);
+  const [zoom, setZoom] = useState(12);
+  const [coordinatesList, setCordinatesList] = useState([]);
   const [featuresList, setFeaturesList] = useState([]);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ function PolyLine({ routeStops }) {
       });
       setCordinatesList(cords);
     }
-  }, [routeStops]);
+  }, [id]);
 
   useEffect(() => {
     if (coordinatesList) {
@@ -46,19 +46,15 @@ function PolyLine({ routeStops }) {
   console.log(coordinatesList);
 
   useEffect(() => {
-    if (map.current) return; // initialize map only once
     const mapInstance = new mapboxgl.Map({
       container: mapContainer.current,
-
       style: "mapbox://styles/mapbox/light-v11",
-      center: [77.641151, 12.971891],
-      zoom: 12,
+      center: [lng, lat],
+      zoom: zoom,
     });
 
-    map.current = mapInstance;
-    // setTimeout(() => {
     mapInstance.on("load", () => {
-      map.current.addSource("route", {
+      mapInstance.addSource(`route`, {
         type: "geojson",
         data: {
           type: "Feature",
@@ -68,7 +64,7 @@ function PolyLine({ routeStops }) {
           },
         },
       });
-      map.current.addSource("points", {
+      mapInstance.addSource(`points`, {
         type: "geojson",
         data: {
           type: "FeatureCollection",
@@ -76,7 +72,7 @@ function PolyLine({ routeStops }) {
         },
       });
 
-      map.current.addLayer({
+      mapInstance.addLayer({
         id: "route",
         type: "line",
         source: "route",
@@ -89,7 +85,7 @@ function PolyLine({ routeStops }) {
           "line-width": 5,
         },
       });
-      map.current.addLayer({
+      mapInstance.addLayer({
         id: "points",
         type: "circle",
         source: "points",
@@ -101,7 +97,9 @@ function PolyLine({ routeStops }) {
         },
       });
     });
-  }, [routeStops]);
+
+    map.current = mapInstance;
+  }, [coordinatesList, featuresList, id, lat, lng, zoom]);
 
   return (
     <div className="App">
