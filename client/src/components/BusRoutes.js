@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import { Card, Collapse, Typography, Button, Alert } from "antd";
+import { Card, Collapse, Typography, Button, message } from "antd";
 const { Title } = Typography;
 const { Panel } = Collapse;
 
