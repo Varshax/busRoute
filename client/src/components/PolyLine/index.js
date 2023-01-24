@@ -9,9 +9,7 @@ mapboxgl.accessToken =
 function PolyLine({ routeStops }) {
   const mapContainer = useRef(null);
   const map = useRef(null);
-  const [lng, setLng] = useState(77.641151);
-  const [lat, setLat] = useState(12.971891);
-  const [zoom, setZoom] = useState(12);
+
   const [coordinatesList, setCordinatesList] = useState([
     // [77.641151, 12.971891],
     // [77.6561, 12.9613],
@@ -53,8 +51,8 @@ function PolyLine({ routeStops }) {
       container: mapContainer.current,
 
       style: "mapbox://styles/mapbox/light-v11",
-      center: [lng, lat],
-      zoom: zoom,
+      center: [77.641151, 12.971891],
+      zoom: 12,
     });
 
     map.current = mapInstance;
@@ -103,7 +101,7 @@ function PolyLine({ routeStops }) {
         },
       });
     });
-  });
+  }, [routeStops]);
 
   return (
     <div className="App">
