@@ -10,6 +10,7 @@ const BusRoutes = ({
   getRoutes,
   setRouteDetail,
   routes,
+  routeDetail,
   setEditRouteForm,
   setIsModalOpen,
 }) => {
