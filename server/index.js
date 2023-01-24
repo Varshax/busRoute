@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
 
-const busRoutes = require("./routes/busRoute-routes");
+const busRoutes = require("./src/routes/busRoute-routes");
 
 app.use("/api/v1", busRoutes);
 
