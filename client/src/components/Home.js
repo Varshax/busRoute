@@ -6,7 +6,7 @@ import BusRoutes from "./BusRoutes";
 import GeoMap from "../components/Map/index";
 import Icon from "../Icon.png";
 import { PlusOutlined } from "@ant-design/icons";
-import PolyLine from "./PolyLine";
+import PolyLine from "../components/PolyLine/index";
 
 function Home({
   setRouteDetail,
