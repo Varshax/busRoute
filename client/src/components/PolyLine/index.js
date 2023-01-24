@@ -2,13 +2,11 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import ReactMapGL, { Source, Layer, Marker } from "react-map-gl";
 import { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
+import MapboxWorker from "mapbox-gl/dist/mapbox-gl-csp-worker";
+mapboxgl.workerClass = MapboxWorker;
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoidmFyc2hpbmlhazI1IiwiYSI6ImNsZDZoMzF3YjA0dXozcHBiaXFqOTdhOXgifQ.kFDv0nM6o01tsZXGqGggvA";
-
-// eslint-disable-next-line import/no-webpack-loader-syntax
-mapboxgl.workerClass =
-  require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
 
 function PolyLine({ routeStops, id }) {
   console.log(routeStops, id, "id - routestops");
