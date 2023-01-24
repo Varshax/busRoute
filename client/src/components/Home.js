@@ -46,6 +46,7 @@ function Home({
             <Col>
               <Button
                 onClick={() => {
+                  setEditRouteForm(false);
                   setIsModalOpen(true);
                 }}
               >

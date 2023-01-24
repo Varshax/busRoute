@@ -27,10 +27,9 @@
     "@loaders.gl/images": "3.1.8"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test"
   },
   "eslintConfig": {
     "extends": [
@@ -50,5 +49,8 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://bus-route-varshax.vercel.app/api/v1"
+  "proxy": "https://bus-route-varshax.vercel.app/api/v1",
+  "devDependencies": {
+    "@craco/craco": "^7.0.0"
+  }
 }
