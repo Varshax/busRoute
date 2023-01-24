@@ -74,7 +74,10 @@ function Home({
         </Col>
         <Col span={12}>
           {routeDetail[0] ? (
-            <PolyLine routeStops={routeDetail[0].routeStops} />
+            <PolyLine
+              routeStops={routeDetail[0].routeStops}
+              id={routeDetail[0]._id}
+            />
           ) : (
             <>
               <PolyLine />
