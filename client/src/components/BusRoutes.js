@@ -1,16 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Card, Collapse, Typography, Button, Alert } from "antd";
 const { Title } = Typography;
 const { Panel } = Collapse;
-const { Meta } = Card;
 
 const BusRoutes = ({
   getRoutes,
   setRouteDetail,
-  routeDetail,
   routes,
   setEditRouteForm,
   setIsModalOpen,

@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Button, Col, Row, Card, Typography, Collapse } from "antd";
+import { Button, Col, Row, Typography } from "antd";
 import BusRouteModal from "./BusRouteModal";
 import axios from "axios";
 import BusRoutes from "./BusRoutes";
-import GeoMap from "../components/Map/index";
 import Icon from "../Icon.png";
-import { PlusOutlined } from "@ant-design/icons";
 import PolyLine from "../components/PolyLine/index";
 
 function Home({

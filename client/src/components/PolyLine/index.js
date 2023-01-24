@@ -6,6 +6,10 @@ import mapboxgl from "mapbox-gl";
 mapboxgl.accessToken =
   "pk.eyJ1IjoidmFyc2hpbmlhazI1IiwiYSI6ImNsZDZoMzF3YjA0dXozcHBiaXFqOTdhOXgifQ.kFDv0nM6o01tsZXGqGggvA";
 
+// eslint-disable-next-line import/no-webpack-loader-syntax
+mapboxgl.workerClass =
+  require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
+
 function PolyLine({ routeStops, id }) {
   console.log(routeStops, id, "id - routestops");
 
@@ -13,7 +17,7 @@ function PolyLine({ routeStops, id }) {
   const map = useRef(null);
   const [lng, setLng] = useState(77.641151);
   const [lat, setLat] = useState(12.971891);
-  const [zoom, setZoom] = useState(12);
+  const [zoom, setZoom] = useState(10);
   const [coordinatesList, setCordinatesList] = useState([]);
   const [featuresList, setFeaturesList] = useState([]);
 
@@ -91,7 +95,7 @@ function PolyLine({ routeStops, id }) {
         source: "points",
         paint: {
           "circle-color": "#0093e5",
-          "circle-radius": 20,
+          "circle-radius": 10,
           "circle-stroke-width": 2,
           "circle-stroke-color": "#ffffff",
         },
