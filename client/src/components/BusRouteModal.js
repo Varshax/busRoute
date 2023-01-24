@@ -11,14 +11,17 @@ const BusRouteModal = ({
   getRoutes,
 }) => {
   const handleOk = () => {
+    setEditRouteForm(false);
     setIsModalOpen(false);
+    setRouteDetail([]);
   };
   const handleCancel = () => {
     setEditRouteForm(false);
     setIsModalOpen(false);
+    setRouteDetail([]);
+    window.location.reload(true);
   };
 
-  console.log(editRouteForm);
   return (
     <>
       <Modal

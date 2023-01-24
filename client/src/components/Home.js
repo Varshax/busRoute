@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Col, Row, Typography } from "antd";
+import { Button, Col, Row, Typography, Alert } from "antd";
 import BusRouteModal from "./BusRouteModal";
 import axios from "axios";
 import BusRoutes from "./BusRoutes";
@@ -15,7 +15,6 @@ function Home({
   setEditRouteForm,
 }) {
   const [routes, updateRoutes] = useState([]);
-
   const getRoutes = async () => {
     const data = await axios
       .get("https://bus-route-varshax.vercel.app/api/v1")
@@ -46,8 +45,9 @@ function Home({
             <Col>
               <Button
                 onClick={() => {
-                  setEditRouteForm(false);
+                  setRouteDetail([]);
                   setIsModalOpen(true);
+                  setEditRouteForm(false);
                 }}
               >
                 <span>Create New Route</span>

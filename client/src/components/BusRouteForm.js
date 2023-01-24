@@ -4,11 +4,11 @@ import {
   Button,
   Form,
   Input,
-  Alert,
   Modal,
   Select,
   Switch,
   Typography,
+  Alert,
 } from "antd";
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
@@ -89,16 +89,19 @@ const BusRouteForm = ({
   const formRef = React.useRef(null);
 
   console.log(editRouteForm, "Edit Form", routeDetail, "Route Details");
+
   useEffect(() => {
-    if (editRouteForm) {
-      formRef.current?.setFieldsValue({
-        routeName: routeDetail[0].routeName,
-        direction: routeDetail[0].routeDirection,
-        status: routeDetail[0].routeStatus,
-      });
-      setStopList(routeDetail[0].routeStops);
+    if (routeDetail.length > 0) {
+      if (editRouteForm == true) {
+        formRef.current?.setFieldsValue({
+          routeName: routeDetail[0].routeName,
+          direction: routeDetail[0].routeDirection,
+          status: routeDetail[0].routeStatus,
+        });
+        setStopList(routeDetail[0].routeStops);
+      }
     }
-  }, [routeDetail]);
+  }, [editRouteForm]);
 
   const createRoute = async (values) => {
     await axios({
@@ -116,12 +119,7 @@ const BusRouteForm = ({
           setIsModalOpen(false);
           setEditRouteForm(false);
           getRoutes();
-          <Alert
-            message="Successfully Created Route"
-            type="success"
-            showIcon
-            closable
-          />;
+          alert("Successfully Created");
         }
       })
       .catch((error) => {
@@ -150,16 +148,12 @@ const BusRouteForm = ({
       },
     })
       .then((resp) => {
+        console.log(resp.status);
         if (resp.status === 200) {
           setIsModalOpen(false);
           setEditRouteForm(false);
           getRoutes();
-          <Alert
-            message="Successfully Updated Route"
-            type="success"
-            showIcon
-            closable
-          />;
+          alert("Successfully Updated");
         }
       })
       .catch((error) => {

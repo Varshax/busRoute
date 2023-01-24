@@ -28,12 +28,7 @@ const BusRoutes = ({
       .then((resp) => {
         if (resp.status === 200) {
           getRoutes();
-          <Alert
-            message="Successfully Deleted Route"
-            type="success"
-            showIcon
-            closable
-          />;
+          alert("Successfully Deleted");
         }
       })
       .catch((error) => {
@@ -82,11 +77,11 @@ const BusRoutes = ({
                     </div>
                   </span>
                   <p>
-                    This route is recently created and will take you to hell for
-                    sure. So have fun on the way.
+                    This route is recently created and will take you for a ride.
+                    So have fun on the way.
                   </p>
                   <div className="routeDetails">
-                    {route.routeStatus ? (
+                    {route.routeStatus && route.routeStatus === "true" ? (
                       <span className="active">Active</span>
                     ) : (
                       <span className="inactive">Inactive</span>
