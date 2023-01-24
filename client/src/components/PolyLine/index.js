@@ -4,8 +4,7 @@ import { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
-mapboxgl.workerClass =
-  require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
+import MapboxWorker from "worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoidmFyc2hpbmlhazI1IiwiYSI6ImNsZDZoMzF3YjA0dXozcHBiaXFqOTdhOXgifQ.kFDv0nM6o01tsZXGqGggvA";
