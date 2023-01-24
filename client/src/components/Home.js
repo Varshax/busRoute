@@ -20,7 +20,7 @@ function Home({
 
   const getRoutes = async () => {
     const data = await axios
-      .get("http://localhost:5001/routes")
+      .get("https://bus-route.vercel.app/api/v1/")
       .then((response) => {
         return response.data;
       })

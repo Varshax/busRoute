@@ -25,7 +25,7 @@ const BusRoutes = ({
   };
   const deleteRoutes = async (id) => {
     await axios
-      .delete(`http://localhost:5001/routes/${id}`)
+      .delete(`https://bus-route.vercel.app/api/v1/${id}`)
       .then((resp) => {
         if (resp.status === 200) {
           getRoutes();
