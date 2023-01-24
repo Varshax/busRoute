@@ -2,8 +2,6 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import ReactMapGL, { Source, Layer, Marker } from "react-map-gl";
 import { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
-import MapboxWorker from "mapbox-gl/dist/mapbox-gl-csp-worker";
-mapboxgl.workerClass = MapboxWorker;
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoidmFyc2hpbmlhazI1IiwiYSI6ImNsZDZoMzF3YjA0dXozcHBiaXFqOTdhOXgifQ.kFDv0nM6o01tsZXGqGggvA";
