@@ -6,6 +6,7 @@ import BusRoutes from "./BusRoutes";
 import GeoMap from "../components/Map/index";
 import Icon from "../Icon.png";
 import { PlusOutlined } from "@ant-design/icons";
+import PolyLine from "./PolyLine";
 
 function Home({
   setRouteDetail,
@@ -74,9 +75,11 @@ function Home({
         </Col>
         <Col span={12}>
           {routeDetail[0] ? (
-            <GeoMap routeStops={routeDetail[0].routeStops} />
+            <PolyLine routeStops={routeDetail[0].routeStops} />
           ) : (
-            <GeoMap />
+            <>
+              <PolyLine />
+            </>
           )}
         </Col>
       </Row>

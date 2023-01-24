@@ -18,11 +18,6 @@ body {
   display: none;
 }
 
-.map-container {
-  height: 500px;
-  width: 500px;
-}
-
 .marker {
   background-size: cover;
   width: 24px;
@@ -128,4 +123,11 @@ button.ant-btn.ant-btn-primary.css-dev-only-do-not-override-1n7nwfa:hover {
   color: #0093e5;
   margin-right: 10px;
   border: 1px solid #0093e5;
+}
+
+.map-container {
+  height: 80vh;
+  margin: 90px 15px;
+  width: 95%;
+  border-radius: 20px;
 }
