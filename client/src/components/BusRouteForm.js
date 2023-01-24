@@ -9,6 +9,7 @@ import {
   Switch,
   Typography,
   Alert,
+  message,
 } from "antd";
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
@@ -119,19 +120,15 @@ const BusRouteForm = ({
           setIsModalOpen(false);
           setEditRouteForm(false);
           getRoutes();
-          alert("Successfully Created");
+          setTimeout(() => {
+            message.success("Created Route Successfully");
+          });
         }
       })
-      .catch((error) => {
-        return (
-          <Alert
-            message="Warning"
-            description={error.message}
-            type="warning"
-            showIcon
-            closable
-          />
-        );
+      .catch((err) => {
+        return setTimeout(() => {
+          message.error({ err });
+        });
       });
   };
 
@@ -153,19 +150,15 @@ const BusRouteForm = ({
           setIsModalOpen(false);
           setEditRouteForm(false);
           getRoutes();
-          alert("Successfully Updated");
+          setTimeout(() => {
+            message.success("Updated Route Successfully");
+          });
         }
       })
-      .catch((error) => {
-        return (
-          <Alert
-            message="Warning"
-            description={error.message}
-            type="warning"
-            showIcon
-            closable
-          />
-        );
+      .catch((err) => {
+        return setTimeout(() => {
+          message.error({ err });
+        });
       });
   };
   const showStopModal = () => {
@@ -243,7 +236,11 @@ const BusRouteForm = ({
                 <li key={stop.stopId} className="stop">
                   <Avatar
                     icon={<CompassOutlined />}
-                    style={{ marginRight: "10px" }}
+                    style={{
+                      marginRight: "10px",
+                      backgroundColor: "black",
+                      marginBottom: "10px",
+                    }}
                   />
                   {stop.stopName}
                 </li>

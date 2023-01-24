@@ -28,19 +28,15 @@ const BusRoutes = ({
       .then((resp) => {
         if (resp.status === 200) {
           getRoutes();
-          alert("Successfully Deleted");
+          setTimeout(() => {
+            message.success("Deleted Route Successfully");
+          });
         }
       })
-      .catch((error) => {
-        return (
-          <Alert
-            message="Warning"
-            description={error.message}
-            type="warning"
-            showIcon
-            closable
-          />
-        );
+      .catch((err) => {
+        return setTimeout(() => {
+          message.error({ err });
+        });
       });
   };
 

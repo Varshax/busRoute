@@ -34,7 +34,6 @@ body {
 }
 .mainHeading article {
   color: #000000;
-  font-family: "Inter";
   font-style: normal;
   font-weight: 500;
   font-size: 32px;
@@ -112,13 +111,13 @@ body {
   margin-bottom: 31px;
 }
 
-button.ant-btn.ant-btn-primary.css-dev-only-do-not-override-1n7nwfa {
+button.ant-btn.css-1n7nwfa.ant-btn-primary {
   background: #0093e5;
   color: #fff;
   margin-right: 10px;
 }
 
-button.ant-btn.ant-btn-primary.css-dev-only-do-not-override-1n7nwfa:hover {
+button.ant-btn.css-1n7nwfa.ant-btn-primary:hover {
   background: #fff;
   color: #0093e5;
   margin-right: 10px;
