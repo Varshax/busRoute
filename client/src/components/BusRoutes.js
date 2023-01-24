@@ -62,7 +62,10 @@ const BusRoutes = ({
                     <Title level={3}>{route.routeName}</Title>
                     <div>
                       <span style={{ marginRight: "10px" }}>
-                        <Button onClick={editRoute}>
+                        <Button
+                          onClick={editRoute}
+                          disabled={routeDetail.length}
+                        >
                           <EditOutlined />
                           Edit Route
                         </Button>
@@ -72,9 +75,9 @@ const BusRoutes = ({
                           onClick={() => {
                             deleteRoutes(route._id);
                           }}
+                          disabled={routeDetail.length}
                         />
                       </span>
-                      <Link to={`/routes/routeDetail/${route._id}`}></Link>
                     </div>
                   </span>
                   <p>
